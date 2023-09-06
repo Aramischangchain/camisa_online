@@ -15,3 +15,5 @@ classes:
 <a href="https://github.com/Aramischangchain/camisa_online">
  <img src="imagem drawio/drawio_camisa.drawio.png" alt="diagrama de classes" width="1500" heigh="1500">
  </a>
+
+rever de colocar categoria marca:marca na classe produto e assim por diante
