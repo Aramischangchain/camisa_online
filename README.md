@@ -15,5 +15,5 @@ classes:
  - TipodePagamento
 
 <a href="https://github.com/Aramischangchain/camisa_online">
- <img src="imagem drawio/drawio_camisa.drawio.png" alt="diagrama de classes" width="200" heigh="200">
+ <img src="imagem drawio/drawio_camisa.drawio.png" alt="diagrama de classes" width="500" heigh="500">
  </a>
