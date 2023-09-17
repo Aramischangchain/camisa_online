@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XcG+3T/V5WhKIpIniFmoQ1PPqUdJovK2iCaTF/1c4w9Fe9YvQu6PryFS9UlQc5KzYaPNGorZBTWClHLMvPks3w==",
+  "dgSpecHash": "11uXBx4Pm1h+ContUgWdhPheiZBWScoNsU/e+6td5EdPQS3WMTmSegNCTND7DOW5yutuaXh7qCRSuaeXJ82Z/Q==",
   "success": true,
-  "projectFilePath": "C:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "c:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
     "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
