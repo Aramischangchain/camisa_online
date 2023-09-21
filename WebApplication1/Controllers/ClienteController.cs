@@ -20,16 +20,15 @@ public class ClienteController : ControllerBase
     [Route("listar")]
     public async Task<ActionResult<IEnumerable<Cliente>>> Listar()
     {
-        if(_context.Cliente is null)
-            return NotFound();
+        if (_context.Cliente is null) return NotFound();
         return await _context.Cliente.ToListAsync();
     }
+
     [HttpGet()]
     [Route("buscar/{nome}")]
     public async Task<ActionResult<Cliente>> Buscar([FromRoute] string nome)
     {
-        if(_context.Cliente is null)
-            return NotFound();
+        if (_context.Cliente is null) return NotFound();
         var cliente = await _context.Cliente.FindAsync(nome);
         if (cliente is null)
             return NotFound();
@@ -37,12 +36,24 @@ public class ClienteController : ControllerBase
     }
     [HttpPost]
     [Route("cadastrar")]
-    public IActionResult Cadastrar(Cliente cliente)
+    public async Task<IActionResult> Cadastrar(Cliente cliente)
     {
-        _context.Add(cliente);
-        _context.SaveChanges();
+        await _context.AddAsync(cliente);
+        await _context.SaveChangesAsync();
         return Created("", cliente);
     }
+
+    [HttpDelete]
+    [Route("excluir/{nome}")]
+    public async Task<IActionResult> Excluir(string nome)
+    {
+        var cliente = await _context.Cliente.FindAsync(nome);
+        if (cliente is null) return NotFound();
+        _context.Cliente.Remove(cliente);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
 }
 
 
