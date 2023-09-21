@@ -62,5 +62,5 @@ Toda vez que houver alteração na model, criar novamigração e atualizar o BD:
 
 Execute o projeto no Visual Studio Code
 <a href="https://github.com/Aramischangchain/camisa_online">
-<img src="imagem drawio/diagrama.png" alt="diagrama de classes" width="1500" heigh="1500">
+<img src="imagem drawio/digrama.png" alt="diagrama de classes" width="1500" heigh="1500">
 </a>
