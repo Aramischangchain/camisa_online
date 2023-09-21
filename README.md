@@ -28,36 +28,36 @@ Verifique a comptibilidade do seu ambiente
 (.NET)
 
 ```bash
-$ dotnet --list-sdks
+ dotnet --list-sdks
 ```
 
 Verifique a versão do seu .NET (de preferência a versão 7.0.400)
 
 ```bash
-$ dotnet --version
+ dotnet --version
 ```
 
 Instale as dependências
 
 ```bash
-$ dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+ dotnet add package Microsoft.EntityFrameworkCore
+ dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet
+ dotnet add package Microsoft.EntityFrameworkCore.Design
+ dotnet tool install --global dotnet-ef
+ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
 Abra o projeto no diretorio rais WebApplication1:
 
 ```bash
-dotnet ef migrations add CriacaoInicial
+ dotnet ef migrations add CriacaoInicial
 ```
 
 Toda vez que houver alteração na model, criar novamigração e atualizar o BD:
 
 ```bash
-dotnet ef migrations add AlteradoTalCoisa
-dotnet ef database update
+ dotnet ef migrations add AlteradoTalCoisa
+ dotnet ef database update
 ```
 
 Execute o projeto no Visual Studio Code
