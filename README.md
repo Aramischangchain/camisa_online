@@ -16,7 +16,7 @@ classes:
 
 ## 🏁 Usando
 
-Clone o repositorio e vá para a raiz do diretório
+Clone o repositorio e vá para a raiz do diretório:
 
 ```bash
 $ git clone https://github.com/Aramischangchain/camisa_online.git
@@ -24,20 +24,19 @@ $ git clone https://github.com/Aramischangchain/camisa_online.git
 $ cd WebApplication1
 ```
 
-Verifique a comptibilidade do seu ambiente
-(.NET)
+Verifique a comptibilidade do seu ambiente (.NET):
 
 ```bash
  dotnet --list-sdks
 ```
 
-Verifique a versão do seu .NET (de preferência a versão 7.0.400)
+Verifique a versão do seu .NET (de preferência a versão 7.0.400):
 
 ```bash
  dotnet --version
 ```
 
-Instale as dependências
+Instale as dependências:
 
 ```bash
  dotnet add package Microsoft.EntityFrameworkCore
@@ -60,7 +59,8 @@ Toda vez que houver alteração na model, criar novamigração e atualizar o BD:
  dotnet ef database update
 ```
 
-Execute o projeto no Visual Studio Code
+Execute o projeto no Visual Studio Code.
+Digrama:
 <a href="https://github.com/Aramischangchain/camisa_online">
 <img src="imagem drawio/digrama.png" alt="diagrama de classes" width="1500" heigh="1500">
 </a>
