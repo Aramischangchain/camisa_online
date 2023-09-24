@@ -25,12 +25,12 @@ public class ClienteController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{nome}")]
-    public async Task<ActionResult<Cliente>> Buscar([FromRoute] string nome)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<Cliente>> Buscar([FromRoute] string id)
     {
         if(_context.Cliente is null)
             return NotFound();
-        var cliente = await _context.Cliente.FindAsync(nome);
+        var cliente = await _context.Cliente.FindAsync(id);
         if (cliente is null)
             return NotFound();
         return cliente;
@@ -50,7 +50,7 @@ public class ClienteController : ControllerBase
     {
         if(_context is null) return NotFound();
         if(_context.Cliente is null) return NotFound();
-        var clienteTemp = await _context.Cliente.FindAsync(cliente.Nome);
+        var clienteTemp = await _context.Cliente.FindAsync(cliente.ClienteId);
         if(clienteTemp is null) return NotFound();       
         _context.Cliente.Update(cliente);
         await _context.SaveChangesAsync();
