@@ -8,9 +8,14 @@ public class LojaDbContext : DbContext
     public DbSet<Produto>? Produto { get; set;}
     public DbSet<Estoque>? Estoque { get; set;}
     public DbSet<ItemPedido>? ItemPedido { get; set;}
+    public DbSet<Fornecedor>? Fornecedor { get; set;}
+
 
     public DbSet<Pagamento>? Pagamento {get; set;}
     public DbSet<Pedido>? Pedido {get; set;}
+    public DbSet<Loja>? Loja {get; set;}
+
+    public DbSet<Funcionario>? Funcionario {get; set;}
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
