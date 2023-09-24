@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication1.Models;
+namespace WebApplication1.Controllers;
 public class Cliente
 {
     [Key]

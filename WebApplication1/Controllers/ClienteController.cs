@@ -23,6 +23,7 @@ public class ClienteController : ControllerBase
             return NotFound();
         return await _context.Cliente.ToListAsync();
     }
+    
     [HttpGet()]
     [Route("buscar/{nome}")]
     public async Task<ActionResult<Cliente>> Buscar([FromRoute] string nome)
@@ -43,14 +44,14 @@ public class ClienteController : ControllerBase
         return Created("", cliente);
     }
     
-    [HttpPut]
+    [HttpPut()]
     [Route("alterar")]
     public async Task<ActionResult> Alterar(Cliente cliente)
     {
         if(_context is null) return NotFound();
         if(_context.Cliente is null) return NotFound();
         var clienteTemp = await _context.Cliente.FindAsync(cliente.Nome);
-        if(clienteTemp is null) return NotFound();
+        if(clienteTemp is null) return NotFound();       
         _context.Cliente.Update(cliente);
         await _context.SaveChangesAsync();
         return Ok();

@@ -5,15 +5,11 @@ namespace WebApplication1.Models;
 public class Produto
 {
     [Key]
-    public int? Id {get; set; }
-    public string? descricao { get; set; }
+    public string? Descricao { get; set; }
 
-    public string? cor {get; set; }
+    public string? Cor {get; set; }
 
-    public double? preco {get; set; }
-
-    public string? tamanho {get; set; }
-
-
+    public double? Preco {get; set; }
+    public string? Tamanho {get; set; }
 
 }
