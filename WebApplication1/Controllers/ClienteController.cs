@@ -1,10 +1,8 @@
-using WebApplication1.Data;
-using WebApplication1.Models;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
+using WebApplication1.Data;
+using Microsoft.EntityFrameworkCore;
 namespace WebApplication1.Controllers;
-
-
-namespace WebApplication1.Controller;
 
 [ApiController]
 [Route("[controller]")]
@@ -46,7 +44,7 @@ public class ClienteController : ControllerBase
     }
     
     [HttpPut]
-    [Route("alterar/{nome}")]
+    [Route("alterar")]
     public async Task<ActionResult> Alterar(Cliente cliente)
     {
         if(_context is null) return NotFound();

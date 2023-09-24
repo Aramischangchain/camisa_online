@@ -5990,19 +5990,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Felipe\\.nuget\\packages\\": {}
+    "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Git\\camisa_online\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "c:\\Git\\camisa_online\\WebApplication1\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-      "outputPath": "c:\\Git\\camisa_online\\WebApplication1\\obj\\",
+      "projectPath": "C:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\",
+      "outputPath": "C:\\_src\\camisa_online\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Felipe Oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -6072,7 +6072,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
