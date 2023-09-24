@@ -43,6 +43,20 @@ public class ClienteController : ControllerBase
         _context.SaveChanges();
         return Created("", cliente);
     }
+    
+    [HttpPut]
+    [Route("alterar/{nome}")]
+    public async Task<ActionResult> Alterar(Cliente cliente)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Cliente is null) return NotFound();
+        var clienteTemp = await _context.Cliente.FindAsync(cliente.Nome);
+        if(clienteTemp is null) return NotFound();
+        _context.Cliente.Update(cliente);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+    
 }
 
 
