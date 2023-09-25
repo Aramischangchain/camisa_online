@@ -34,6 +34,7 @@ public class ClienteController : ControllerBase
             return NotFound();
         return cliente;
     }
+    
     [HttpPost]
     [Route("cadastrar")]
     public IActionResult Cadastrar(Cliente cliente)
