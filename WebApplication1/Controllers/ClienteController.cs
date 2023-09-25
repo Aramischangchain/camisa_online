@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Models;
 using WebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
 namespace WebApplication1.Controllers;
@@ -25,12 +24,12 @@ public class ClienteController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<Cliente>> Buscar([FromRoute] string id)
+    [Route("buscar/{ClienteId}")]
+    public async Task<ActionResult<Cliente>> Buscar([FromRoute] int ClienteId)
     {
         if(_context.Cliente is null)
             return NotFound();
-        var cliente = await _context.Cliente.FindAsync(id);
+        var cliente = await _context.Cliente.FindAsync(ClienteId);
         if (cliente is null)
             return NotFound();
         return cliente;
@@ -44,18 +43,45 @@ public class ClienteController : ControllerBase
         return Created("", cliente);
     }
     
-    [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Cliente cliente)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutCliente(int id, Cliente cliente)
     {
-        if(_context is null) return NotFound();
-        if(_context.Cliente is null) return NotFound();
-        var clienteTemp = await _context.Cliente.FindAsync(cliente.ClienteId);
-        if(clienteTemp is null) return NotFound();       
-        _context.Cliente.Update(cliente);
-        await _context.SaveChangesAsync();
-        return Ok();
+        if (id != cliente.ClienteId)
+        {
+            return BadRequest("O ID do cliente na rota não coincide com o ID do cliente fornecido no corpo da solicitação.");
+        }
+
+        // Verifique se o cliente com o ID especificado existe no banco de dados
+        var existingCliente = await _context.Cliente.FindAsync(id);
+
+        if (existingCliente == null)
+        {
+            return NotFound("Cliente não encontrado.");
+        }
+
+        try
+        {
+            // Atualize as propriedades do cliente existente com os valores do novo cliente
+            existingCliente.Nome = cliente.Nome;
+            existingCliente.Email = cliente.Email;
+            existingCliente.Telefone = cliente.Telefone;
+
+            _context.Entry(existingCliente).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            return Conflict("O cliente foi modificado por outro usuário simultaneamente.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Ocorreu um erro durante a atualização do cliente: {ex.Message}");
+        }
+
+        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+
     
 }
 

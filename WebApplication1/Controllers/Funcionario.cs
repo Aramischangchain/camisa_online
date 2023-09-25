@@ -25,12 +25,12 @@ public class FuncionarioController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{nome}")]
-    public async Task<ActionResult<Funcionario>> Buscar([FromRoute] string nome)
+    [Route("buscar/{FuncionarioId}")]
+    public async Task<ActionResult<Funcionario>> Buscar([FromRoute] int FuncionarioId)
     {
         if(_context.Funcionario is null)
             return NotFound();
-        var funcionario = await _context.Funcionario.FindAsync(nome);
+        var funcionario = await _context.Funcionario.FindAsync(FuncionarioId);
         if (funcionario is null)
             return NotFound();
         return funcionario;

@@ -7,7 +7,6 @@ namespace WebApplication1.Controllers;
 public class Pagamento
 {
     [Key]
-    [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int PagamentoId { get; set; }
     public string? NumeroCartao { get; set; }

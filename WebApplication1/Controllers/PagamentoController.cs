@@ -25,12 +25,12 @@ public class PagamentoController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{numerocartao}")]
-    public async Task<ActionResult<Pagamento>> Buscar([FromRoute] string numerocartao)
+    [Route("buscar/{PagamentoId}")]
+    public async Task<ActionResult<Pagamento>> Buscar([FromRoute] int PagamentoId)
     {
         if(_context.Pagamento is null)
             return NotFound();
-        var pagamento = await _context.Pagamento.FindAsync(numerocartao);
+        var pagamento = await _context.Pagamento.FindAsync(PagamentoId);
         if (pagamento is null)
             return NotFound();
         return pagamento;

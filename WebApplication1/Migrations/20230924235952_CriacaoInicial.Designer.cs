@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
@@ -10,9 +11,11 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    partial class LojaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230924235952_CriacaoInicial")]
+    partial class CriacaoInicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
@@ -241,7 +244,7 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Funcionario", b =>
                 {
                     b.HasOne("WebApplication1.Models.Loja", "Loja")
-                        .WithMany("Funcionario")
+                        .WithMany("Funcionarios")
                         .HasForeignKey("LojaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -271,7 +274,7 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Pedido", b =>
                 {
                     b.HasOne("WebApplication1.Controllers.Cliente", "Cliente")
-                        .WithMany("Pedido")
+                        .WithMany("Pedidos")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -282,13 +285,13 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Produto", b =>
                 {
                     b.HasOne("WebApplication1.Models.Estoque", "Estoque")
-                        .WithMany("Produto")
+                        .WithMany("Produtos")
                         .HasForeignKey("EstoqueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApplication1.Models.Fornecedor", "Fornecedor")
-                        .WithMany("Produto")
+                        .WithMany("Produtos")
                         .HasForeignKey("FornecedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -300,22 +303,22 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Controllers.Cliente", b =>
                 {
-                    b.Navigation("Pedido");
+                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Estoque", b =>
                 {
-                    b.Navigation("Produto");
+                    b.Navigation("Produtos");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Fornecedor", b =>
                 {
-                    b.Navigation("Produto");
+                    b.Navigation("Produtos");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Loja", b =>
                 {
-                    b.Navigation("Funcionario");
+                    b.Navigation("Funcionarios");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Pedido", b =>

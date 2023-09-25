@@ -25,12 +25,12 @@ public class ProdutoController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{descricao}")]
-    public async Task<ActionResult<Produto>> Buscar([FromRoute] string descricao)
+    [Route("buscar/{ProdutoId}")]
+    public async Task<ActionResult<Produto>> Buscar([FromRoute] string ProdutoId)
     {
         if(_context.Produto is null)
             return NotFound();
-        var produto = await _context.Produto.FindAsync(descricao);
+        var produto = await _context.Produto.FindAsync(ProdutoId);
         if (produto is null)
             return NotFound();
         return produto;

@@ -6,7 +6,6 @@ namespace WebApplication1.Models;
 public class Funcionario
 {
     [Key]
-    [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int FuncionarioId { get; set; }
 

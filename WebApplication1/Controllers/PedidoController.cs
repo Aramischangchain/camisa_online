@@ -25,12 +25,12 @@ public class PedidoController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{numero}")]
-    public async Task<ActionResult<Pedido>> Buscar([FromRoute] string numero)
+    [Route("buscar/{PedidoId}")]
+    public async Task<ActionResult<Pedido>> Buscar([FromRoute] string PedidoId)
     {
         if(_context.Pedido is null)
             return NotFound();
-        var pedido = await _context.Pedido.FindAsync(numero);
+        var pedido = await _context.Pedido.FindAsync(PedidoId);
         if (pedido is null)
             return NotFound();
         return pedido;

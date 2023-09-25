@@ -5,74 +5,25 @@
 namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
-    public partial class AlteraçcaoPrincipal : Migration
+    public partial class CriacaoInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Produto",
-                table: "Produto");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Cliente",
-                table: "Cliente");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Descricao",
-                table: "Produto",
-                type: "TEXT",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "TEXT");
-
-            migrationBuilder.AddColumn<int>(
-                name: "ProdutoId",
-                table: "Produto",
-                type: "INTEGER",
-                nullable: false,
-                defaultValue: 0)
-                .Annotation("Sqlite:Autoincrement", true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "EstoqueId",
-                table: "Produto",
-                type: "INTEGER",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<int>(
-                name: "FornecedorId",
-                table: "Produto",
-                type: "INTEGER",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Nome",
-                table: "Cliente",
-                type: "TEXT",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "TEXT");
-
-            migrationBuilder.AddColumn<int>(
-                name: "ClienteId",
-                table: "Cliente",
-                type: "INTEGER",
-                nullable: false,
-                defaultValue: 0)
-                .Annotation("Sqlite:Autoincrement", true);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Produto",
-                table: "Produto",
-                column: "ProdutoId");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Cliente",
-                table: "Cliente",
-                column: "ClienteId");
+            migrationBuilder.CreateTable(
+                name: "Cliente",
+                columns: table => new
+                {
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Telefone = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.ClienteId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Estoque",
@@ -140,6 +91,36 @@ namespace WebApplication1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    ProdutoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: true),
+                    Cor = table.Column<string>(type: "TEXT", nullable: true),
+                    Preco = table.Column<double>(type: "REAL", nullable: true),
+                    Tamanho = table.Column<string>(type: "TEXT", nullable: true),
+                    EstoqueId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FornecedorId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.ProdutoId);
+                    table.ForeignKey(
+                        name: "FK_Produto_Estoque_EstoqueId",
+                        column: x => x.EstoqueId,
+                        principalTable: "Estoque",
+                        principalColumn: "EstoqueId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Produto_Fornecedor_FornecedorId",
+                        column: x => x.FornecedorId,
+                        principalTable: "Fornecedor",
+                        principalColumn: "FornecedorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Funcionario",
                 columns: table => new
                 {
@@ -158,6 +139,28 @@ namespace WebApplication1.Migrations
                         column: x => x.LojaId,
                         principalTable: "Loja",
                         principalColumn: "LojaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pagamento",
+                columns: table => new
+                {
+                    PagamentoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NumeroCartao = table.Column<string>(type: "TEXT", nullable: true),
+                    Validade = table.Column<string>(type: "TEXT", nullable: true),
+                    NomeTitular = table.Column<string>(type: "TEXT", nullable: true),
+                    PedidoId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pagamento", x => x.PagamentoId);
+                    table.ForeignKey(
+                        name: "FK_Pagamento_Pedido_PedidoId",
+                        column: x => x.PedidoId,
+                        principalTable: "Pedido",
+                        principalColumn: "PedidoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -189,38 +192,6 @@ namespace WebApplication1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Pagamento",
-                columns: table => new
-                {
-                    PagamentoId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    NumeroCartao = table.Column<string>(type: "TEXT", nullable: true),
-                    Validade = table.Column<string>(type: "TEXT", nullable: true),
-                    NomeTitular = table.Column<string>(type: "TEXT", nullable: true),
-                    PedidoId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pagamento", x => x.PagamentoId);
-                    table.ForeignKey(
-                        name: "FK_Pagamento_Pedido_PedidoId",
-                        column: x => x.PedidoId,
-                        principalTable: "Pedido",
-                        principalColumn: "PedidoId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Produto_EstoqueId",
-                table: "Produto",
-                column: "EstoqueId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Produto_FornecedorId",
-                table: "Produto",
-                column: "FornecedorId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionario_LojaId",
                 table: "Funcionario",
@@ -247,40 +218,20 @@ namespace WebApplication1.Migrations
                 table: "Pedido",
                 column: "ClienteId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Produto_Estoque_EstoqueId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Produto_EstoqueId",
                 table: "Produto",
-                column: "EstoqueId",
-                principalTable: "Estoque",
-                principalColumn: "EstoqueId",
-                onDelete: ReferentialAction.Cascade);
+                column: "EstoqueId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Produto_Fornecedor_FornecedorId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Produto_FornecedorId",
                 table: "Produto",
-                column: "FornecedorId",
-                principalTable: "Fornecedor",
-                principalColumn: "FornecedorId",
-                onDelete: ReferentialAction.Cascade);
+                column: "FornecedorId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Produto_Estoque_EstoqueId",
-                table: "Produto");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Produto_Fornecedor_FornecedorId",
-                table: "Produto");
-
-            migrationBuilder.DropTable(
-                name: "Estoque");
-
-            migrationBuilder.DropTable(
-                name: "Fornecedor");
-
             migrationBuilder.DropTable(
                 name: "Funcionario");
 
@@ -294,69 +245,19 @@ namespace WebApplication1.Migrations
                 name: "Loja");
 
             migrationBuilder.DropTable(
+                name: "Produto");
+
+            migrationBuilder.DropTable(
                 name: "Pedido");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Produto",
-                table: "Produto");
+            migrationBuilder.DropTable(
+                name: "Estoque");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Produto_EstoqueId",
-                table: "Produto");
+            migrationBuilder.DropTable(
+                name: "Fornecedor");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Produto_FornecedorId",
-                table: "Produto");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Cliente",
-                table: "Cliente");
-
-            migrationBuilder.DropColumn(
-                name: "ProdutoId",
-                table: "Produto");
-
-            migrationBuilder.DropColumn(
-                name: "EstoqueId",
-                table: "Produto");
-
-            migrationBuilder.DropColumn(
-                name: "FornecedorId",
-                table: "Produto");
-
-            migrationBuilder.DropColumn(
-                name: "ClienteId",
-                table: "Cliente");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Descricao",
-                table: "Produto",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "TEXT",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Nome",
-                table: "Cliente",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "TEXT",
-                oldNullable: true);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Produto",
-                table: "Produto",
-                column: "Descricao");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Cliente",
-                table: "Cliente",
-                column: "Nome");
+            migrationBuilder.DropTable(
+                name: "Cliente");
         }
     }
 }

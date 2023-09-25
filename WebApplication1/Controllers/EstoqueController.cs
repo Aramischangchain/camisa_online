@@ -25,15 +25,15 @@ public class EstoqueController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{descricao}")]
-    public async Task<ActionResult<Estoque>> Buscar([FromRoute] string descricao)
+    [Route("buscar/{EstoqueId}")]
+    public async Task<ActionResult<Estoque>> Buscar([FromRoute] int EstoqueId)
     {
         if(_context.Estoque is null)
             return NotFound();
-        var produto = await _context.Estoque.FindAsync(descricao);
-        if (produto is null)
+        var estoque = await _context.Estoque.FindAsync(EstoqueId);
+        if (estoque is null)
             return NotFound();
-        return produto;
+        return estoque;
     }
     [HttpPost]
     [Route("cadastrar")]

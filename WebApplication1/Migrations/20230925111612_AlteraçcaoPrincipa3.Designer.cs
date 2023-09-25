@@ -11,8 +11,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    [Migration("20230924220654_AlteraçcaoPrincipal")]
-    partial class AlteraçcaoPrincipal
+    [Migration("20230925111612_AlteraçcaoPrincipa3")]
+    partial class AlteraçcaoPrincipa3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Funcionario", b =>
                 {
                     b.HasOne("WebApplication1.Models.Loja", "Loja")
-                        .WithMany("Funcionarios")
+                        .WithMany("Funcionario")
                         .HasForeignKey("LojaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -274,7 +274,7 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Pedido", b =>
                 {
                     b.HasOne("WebApplication1.Controllers.Cliente", "Cliente")
-                        .WithMany("Pedidos")
+                        .WithMany("Pedido")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -285,13 +285,13 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Produto", b =>
                 {
                     b.HasOne("WebApplication1.Models.Estoque", "Estoque")
-                        .WithMany("Produtos")
+                        .WithMany("Produto")
                         .HasForeignKey("EstoqueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApplication1.Models.Fornecedor", "Fornecedor")
-                        .WithMany("Produtos")
+                        .WithMany("Produto")
                         .HasForeignKey("FornecedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -303,22 +303,22 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Controllers.Cliente", b =>
                 {
-                    b.Navigation("Pedidos");
+                    b.Navigation("Pedido");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Estoque", b =>
                 {
-                    b.Navigation("Produtos");
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Fornecedor", b =>
                 {
-                    b.Navigation("Produtos");
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Loja", b =>
                 {
-                    b.Navigation("Funcionarios");
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Pedido", b =>

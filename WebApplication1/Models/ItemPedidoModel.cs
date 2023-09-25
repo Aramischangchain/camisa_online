@@ -6,7 +6,6 @@ namespace WebApplication1.Models;
 public class ItemPedido
 {
     [Key]
-    [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ItemPedidoId { get; set; }
     public string? Descricao { get; set; }

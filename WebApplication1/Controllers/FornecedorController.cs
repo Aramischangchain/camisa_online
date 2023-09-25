@@ -25,12 +25,12 @@ public class FornecedorController : ControllerBase
     }
     
     [HttpGet()]
-    [Route("buscar/{nome}")]
-    public async Task<ActionResult<Fornecedor>> Buscar([FromRoute] string nome)
+    [Route("buscar/{FornecedorId}")]
+    public async Task<ActionResult<Fornecedor>> Buscar([FromRoute] int FornecedorId)
     {
         if(_context.Fornecedor is null)
             return NotFound();
-        var forncedor = await _context.Fornecedor.FindAsync(nome);
+        var forncedor = await _context.Fornecedor.FindAsync(FornecedorId);
         if (forncedor is null)
             return NotFound();
         return forncedor;
