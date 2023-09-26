@@ -4,13 +4,11 @@ Projeto da aula de terça-feira em C# para criar uma loja de camisetas online.
 
 classes:
 
-- Funcionário
 - Fornecedor
-- Loja
-- Pedido
+- Carrinho
 - Cliente
 - Pagamento
-- ItemPedido
+- ItemCarrinho
 - Produto
 - Estoque
 
