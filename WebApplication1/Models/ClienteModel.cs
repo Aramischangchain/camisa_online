@@ -10,7 +10,6 @@ public class Cliente
     public int ClienteId { get; set; }
     public string? Nome { get; set; }
     public string? Email { get; set; }
-    public string? Telefone { get; set; }
-    public List<Pedido> Pedido { get; set; } = new List<Pedido>(); // Relação 0 para muitos com Pedido
+    public string? Endereco { get; set; }
 
 }
