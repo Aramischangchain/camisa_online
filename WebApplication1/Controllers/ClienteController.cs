@@ -65,7 +65,7 @@ public class ClienteController : ControllerBase
             // Atualize as propriedades do cliente existente com os valores do novo cliente
             existingCliente.Nome = cliente.Nome;
             existingCliente.Email = cliente.Email;
-            existingCliente.Telefone = cliente.Telefone;
+            existingCliente.Endereco = cliente.Endereco;
 
             _context.Entry(existingCliente).State = EntityState.Modified;
 

@@ -10,5 +10,4 @@ public class Pagamento
     public string? NumeroCartao { get; set; }
     public string? Validade { get; set; }
     public string? NomeTitular { get; set; }
-     public int CarrinhoId { get; set; } // Chave estrangeira para Pedido
 }
