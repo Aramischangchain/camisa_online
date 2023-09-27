@@ -56,6 +56,20 @@ public class PagamentoController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
+
+    [HttpDelete()]
+    [Route("excluir/{PagamentoId}")]
+    public async Task<ActionResult> Excluir(int PagamentoId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Pagamento is null) return NotFound();
+        var pagamentoTemp = await _context.Pagamento.FindAsync(PagamentoId);
+        if(pagamentoTemp is null) return NotFound();
+        _context.Remove(pagamentoTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     
 }
 

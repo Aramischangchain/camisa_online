@@ -12,6 +12,5 @@ public class Produto
     public string? Cor {get; set; }
     public double? Preco {get; set; }
     public string? Tamanho {get; set; }
-
     
 }

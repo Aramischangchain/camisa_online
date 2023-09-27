@@ -10,7 +10,6 @@ public class LojaDbContext : DbContext
     public DbSet<ItemCarrinho>? ItemCarrinho { get; set;}
     public DbSet<Fornecedor>? Fornecedor { get; set;}
     public DbSet<Carrinho>? Carrinho {get; set;}
-
     public DbSet<Pagamento>? Pagamento {get; set;}
 
 

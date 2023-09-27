@@ -56,6 +56,19 @@ public class ItemPedidoController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
+    [HttpDelete()]
+    [Route("excluir/{ItemCarrinhoId}")]
+    public async Task<ActionResult> Excluir(int ItemCarrinhoId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.ItemCarrinho is null) return NotFound();
+        var itemcarrinhoTemp = await _context.ItemCarrinho.FindAsync(ItemCarrinhoId);
+        if(itemcarrinhoTemp is null) return NotFound();
+        _context.Remove(itemcarrinhoTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     
 }
 

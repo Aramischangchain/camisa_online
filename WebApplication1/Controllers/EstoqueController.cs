@@ -81,6 +81,20 @@ public class EstoqueController : ControllerBase
 
         return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+
+    [HttpDelete()]
+    [Route("excluir/{EstoqueId}")]
+    public async Task<ActionResult> Excluir(int EstoqueId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Estoque is null) return NotFound();
+        var estoqueTemp = await _context.Estoque.FindAsync(EstoqueId);
+        if(estoqueTemp is null) return NotFound();
+        _context.Remove(estoqueTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
 }
 
 

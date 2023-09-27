@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
@@ -10,29 +11,14 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    partial class LojaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230927185101_AlteraçcaoPrincipa5")]
+    partial class AlteraçcaoPrincipa5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
-
-            modelBuilder.Entity("WebApplication1.Controllers.Carrinho", b =>
-                {
-                    b.Property<int>("CarrinhoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<float?>("Preco")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CarrinhoId");
-
-                    b.ToTable("Carrinho");
-                });
 
             modelBuilder.Entity("WebApplication1.Controllers.Cliente", b =>
                 {
@@ -72,6 +58,23 @@ namespace WebApplication1.Migrations
                     b.HasKey("PagamentoId");
 
                     b.ToTable("Pagamento");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Carrinho", b =>
+                {
+                    b.Property<int?>("CarrinhoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float?>("Preco")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CarrinhoId");
+
+                    b.ToTable("Carrinho");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Estoque", b =>

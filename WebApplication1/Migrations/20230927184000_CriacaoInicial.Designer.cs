@@ -11,7 +11,7 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    [Migration("20230927003005_CriacaoInicial")]
+    [Migration("20230927184000_CriacaoInicial")]
     partial class CriacaoInicial
     {
         /// <inheritdoc />
@@ -62,12 +62,9 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.Carrinho", b =>
                 {
-                    b.Property<int>("CarrinhoId")
+                    b.Property<int?>("CarrinhoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Numero")
-                        .HasColumnType("TEXT");
 
                     b.Property<float?>("Preco")
                         .HasColumnType("REAL");

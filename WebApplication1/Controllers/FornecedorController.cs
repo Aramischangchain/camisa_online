@@ -56,6 +56,20 @@ public class FornecedorController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
+
+    [HttpDelete()]
+    [Route("excluir/{FornecedorId}")]
+    public async Task<ActionResult> Excluir(int FornecedorId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Fornecedor is null) return NotFound();
+        var fornecedorTemp = await _context.Fornecedor.FindAsync(FornecedorId);
+        if(fornecedorTemp is null) return NotFound();
+        _context.Remove(fornecedorTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     
 }
 

@@ -83,6 +83,20 @@ public class ClienteController : ControllerBase
         return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
 
+    [HttpDelete()]
+    [Route("excluir/{ClienteId}")]
+    public async Task<ActionResult> Excluir(int ClienteId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Cliente is null) return NotFound();
+        var clienteTemp = await _context.Cliente.FindAsync(ClienteId);
+        if(clienteTemp is null) return NotFound();
+        _context.Remove(clienteTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+
     
 }
 

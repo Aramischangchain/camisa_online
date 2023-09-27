@@ -16,7 +16,6 @@ namespace WebApplication1.Migrations
                 {
                     CarrinhoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Numero = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
                     Preco = table.Column<float>(type: "REAL", nullable: true)
                 },

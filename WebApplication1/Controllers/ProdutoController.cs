@@ -56,7 +56,19 @@ public class ProdutoController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-    
+    [HttpDelete()]
+    [Route("excluir/{ProdutoId}")]
+    public async Task<ActionResult> Excluir(int ProdutoId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Produto is null) return NotFound();
+        var produtoTemp = await _context.Produto.FindAsync(ProdutoId);
+        if(produtoTemp is null) return NotFound();
+        _context.Remove(produtoTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
 }
 
 

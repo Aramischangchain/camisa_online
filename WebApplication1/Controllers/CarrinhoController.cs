@@ -44,21 +44,34 @@ public class CarrinhoController : ControllerBase
         _context.SaveChanges();
         return Created("", carrinho);
     }
-    
+
+    [HttpDelete()]
+    [Route("excluir/{CarrinhoId}")]
+    public async Task<ActionResult> Excluir(int CarrinhoId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Carrinho is null) return NotFound();
+        var carrinhoTemp = await _context.Carrinho.FindAsync(CarrinhoId);
+        if(carrinhoTemp is null) return NotFound();
+        _context.Remove(carrinhoTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     [HttpPut("{id}")]
     public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinho)
     {
         if (id != carrinho.CarrinhoId)
         {
-            return BadRequest("O ID do cliente na rota não coincide com o ID do cliente fornecido no corpo da solicitação.");
+            return BadRequest("O ID do carrinho na rota não coincide com o ID do carrinho fornecido no corpo da solicitação.");
         }
 
-        // Verifique se o cliente com o ID especificado existe no banco de dados
+        // Verifique se o carrinho com o ID especificado existe no banco de dados
         var existingCarrinho = await _context.Carrinho.FindAsync(id);
 
         if (existingCarrinho == null)
         {
-            return NotFound("Cliente não encontrado.");
+            return NotFound("Carrinho não encontrado.");
         }
 
         try
@@ -73,18 +86,16 @@ public class CarrinhoController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            return Conflict("O cliente foi modificado por outro usuário simultaneamente.");
+            return Conflict("O carrinho foi modificado por outro usuário simultaneamente.");
         }
         catch (Exception ex)
         {
-            return StatusCode(500, $"Ocorreu um erro durante a atualização do cliente: {ex.Message}");
+            return StatusCode(500, $"Ocorreu um erro durante a atualização do carrinho: {ex.Message}");
         }
 
         return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
 
-
-    
 }
 
 
