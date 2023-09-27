@@ -64,7 +64,6 @@ public class EstoqueController : ControllerBase
         try
         {
             // Atualize as propriedades do estoque existente com os valores do novo estoque
-            EstoqueTemp.Descricao = estoque.Descricao;
             EstoqueTemp.Quantidade = estoque.Quantidade;
 
             _context.Entry(EstoqueTemp).State = EntityState.Modified;

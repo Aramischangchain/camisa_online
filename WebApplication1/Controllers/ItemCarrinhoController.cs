@@ -17,27 +17,27 @@ public class ItemPedidoController : ControllerBase
 
     [HttpGet]
     [Route("listar")]
-    public async Task<ActionResult<IEnumerable<ItemPedido>>> Listar()
+    public async Task<ActionResult<IEnumerable<ItemCarrinho>>> Listar()
     {
-        if(_context.ItemPedido is null)
+        if(_context.ItemCarrinho is null)
             return NotFound();
-        return await _context.ItemPedido.ToListAsync();
+        return await _context.ItemCarrinho.ToListAsync();
     }
     
     [HttpGet()]
-    [Route("buscar/{ItemPedidoId}")]
-    public async Task<ActionResult<ItemPedido>> Buscar([FromRoute] int ItemPedidoId)
+    [Route("buscar/{ItemCarrinhoId}")]
+    public async Task<ActionResult<ItemCarrinho>> Buscar([FromRoute] int ItemCarrinhoId)
     {
-        if(_context.ItemPedido is null)
+        if(_context.ItemCarrinho is null)
             return NotFound();
-        var item = await _context.ItemPedido.FindAsync(ItemPedidoId);
+        var item = await _context.ItemCarrinho.FindAsync(ItemCarrinhoId);
         if (item is null)
             return NotFound();
         return item;
     }
     [HttpPost]
     [Route("cadastrar")]
-    public IActionResult Cadastrar(ItemPedido item)
+    public IActionResult Cadastrar(ItemCarrinho item)
     {
         _context.Add(item);
         _context.SaveChanges();
@@ -46,13 +46,13 @@ public class ItemPedidoController : ControllerBase
     
     [HttpPut()]
     [Route("alterar")]
-    public async Task<ActionResult> Alterar(ItemPedido item)
+    public async Task<ActionResult> Alterar(ItemCarrinho item)
     {
         if(_context is null) return NotFound();
-        if(_context.ItemPedido is null) return NotFound();
-        var itemTemp = await _context.ItemPedido.FindAsync(item.Descricao);
+        if(_context.ItemCarrinho is null) return NotFound();
+        var itemTemp = await _context.ItemCarrinho.FindAsync(item.Descricao);
         if(itemTemp is null) return NotFound();       
-        _context.ItemPedido.Update(item);
+        _context.ItemCarrinho.Update(item);
         await _context.SaveChangesAsync();
         return Ok();
     }

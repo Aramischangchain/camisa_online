@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models;
 
-public class ItemCarrinho
+public class Carrinho
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ItemCarrinhoId { get; set; }
-    public string? Descricao { get; set; }
-    public string? Quantidade {get; set; }
+    public int CarrinhoId { get; set; }
+    public string? Status {get; set; }
+    public float? Preco {get; set; }
 
 }
