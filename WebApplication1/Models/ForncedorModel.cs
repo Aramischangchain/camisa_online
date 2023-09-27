@@ -11,5 +11,4 @@ public class Fornecedor
     public int? Nome { get; set; }
     public string? Contato {get; set; }
     public double? Endereco {get; set; }
-
 }

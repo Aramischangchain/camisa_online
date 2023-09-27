@@ -45,19 +45,6 @@ public class CarrinhoController : ControllerBase
         return Created("", carrinho);
     }
 
-    [HttpDelete()]
-    [Route("excluir/{CarrinhoId}")]
-    public async Task<ActionResult> Excluir(int CarrinhoId)
-    {
-        if(_context is null) return NotFound();
-        if(_context.Carrinho is null) return NotFound();
-        var carrinhoTemp = await _context.Carrinho.FindAsync(CarrinhoId);
-        if(carrinhoTemp is null) return NotFound();
-        _context.Remove(carrinhoTemp);
-        await _context.SaveChangesAsync();
-        return Ok();
-    }
-
     [HttpPut("{id}")]
     public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinho)
     {
@@ -95,6 +82,19 @@ public class CarrinhoController : ControllerBase
 
         return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+    [HttpDelete()]
+    [Route("excluir/{CarrinhoId}")]
+    public async Task<ActionResult> Excluir(int CarrinhoId)
+    {
+        if(_context is null) return NotFound();
+        if(_context.Carrinho is null) return NotFound();
+        var carrinhoTemp = await _context.Carrinho.FindAsync(CarrinhoId);
+        if(carrinhoTemp is null) return NotFound();
+        _context.Remove(carrinhoTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
 
 }
 

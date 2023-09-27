@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tV7PzOweP7uwEGV286b13+qqUzun7IV+xkRAKz9qAV9SwZpLBkPx4xxiAcRWhnkPfg94fmHEc5VXU153QgCx0Q==",
+  "dgSpecHash": "7u9yV6i25newMtmQV8hKLF5JyFYzFsvckR0MV934mOKZ8bs3NZsoBUs6RnnUpH0CBwmazWJx32YKbyF5hoE27w==",
   "success": true,
-  "projectFilePath": "C:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "c:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
