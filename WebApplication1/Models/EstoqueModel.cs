@@ -5,8 +5,7 @@ namespace WebApplication1.Models;
 
 public class Estoque
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int EstoqueId { get; set; }
-    public string? Quantidade {get; set; }
+    [Key] [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int EstoqueId { get; set;}
+    public string? Quantidade {get; set;}
 }
