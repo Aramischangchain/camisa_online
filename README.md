@@ -2,6 +2,11 @@
 
 Projeto da aula de terça-feira em C# para criar uma loja de camisetas online.
 Video: https://youtu.be/Ugwww5fueiY
+
+Alunos:
+Luiz Felipe A. Oliveira
+Aramis Chang Chain
+
 classes:
 
 - Fornecedor
