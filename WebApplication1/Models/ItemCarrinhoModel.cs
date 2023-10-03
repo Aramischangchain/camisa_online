@@ -7,8 +7,8 @@ public class ItemCarrinho
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ItemCarrinhoId { get; set; }
-    public string? Descricao { get; set; }
-    public string? Quantidade {get; set; }
+    public int ItemCarrinhoId { get; set;}
+    public string? Descricao { get; set;}
+    public string? Quantidade {get; set;}
 
 }
