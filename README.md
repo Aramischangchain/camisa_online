@@ -1,7 +1,7 @@
 # camisa_online
 
 Projeto da aula de terça-feira em C# para criar uma loja de camisetas online.
-
+Video: https://youtu.be/Ugwww5fueiY
 classes:
 
 - Fornecedor
