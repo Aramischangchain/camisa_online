@@ -48,11 +48,6 @@ public class EstoqueController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutEstoque(int id, Estoque estoque)
     {
-        if (id != estoque.EstoqueId)
-        {
-            return BadRequest("O ID do estoque na rota não coincide com o ID do estoque fornecido no corpo da solicitação.");
-        }
-
         // Verifique se o estoque com o ID especificado existe no banco de dados
         var EstoqueTemp = await _context.Estoque.FindAsync(id);
 
