@@ -47,10 +47,6 @@ public class ClienteController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutCliente(int id, Cliente cliente)
     {
-        if (id != cliente.ClienteId)
-        {
-            return BadRequest("O ID do cliente na rota não coincide com o ID do cliente fornecido no corpo da solicitação.");
-        }
 
         // Verifique se o cliente com o ID especificado existe no banco de dados
         var existingCliente = await _context.Cliente.FindAsync(id);
