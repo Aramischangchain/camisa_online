@@ -45,37 +45,35 @@ public class EstoqueController : ControllerBase
         return Created("", estoque);
     }
     
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutEstoque(int id, Estoque estoque)
+    
+   
+[HttpPut("{id}")]
+public async Task<IActionResult> PutCliente(int id, Estoque eatoqueAtualizado)
+{
+    try
     {
         // Verifique se o estoque com o ID especificado existe no banco de dados
-        var EstoqueTemp = await _context.Estoque.FindAsync(id);
+        var existingCliente = await _context.Estoque.FindAsync(id);
 
-        if (EstoqueTemp == null)
+        if (existingEstoque == null)
         {
-            return NotFound("Estoque não encontrado.");
+            return NotFound($"Estoque com o ID {id} não encontrado.");
         }
 
-        try
-        {
-            // Atualize as propriedades do estoque existente com os valores do novo estoque
-            EstoqueTemp.Quantidade = estoque.Quantidade;
+        // Atualize as propriedades do estoque existente com os valores do novo estoque
+        existingCliente.Nome = clienteAtualizado.Nome;
+        existingCliente.Email = clienteAtualizado.Email;
+        existingCliente.Endereco = clienteAtualizado.Endereco;
 
-            _context.Entry(EstoqueTemp).State = EntityState.Modified;
-
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            return Conflict("O estoque foi modificado por outro usuário simultaneamente.");
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Ocorreu um erro durante a atualização do estoque: {ex.Message}");
-        }
+        await _context.SaveChangesAsync();
 
         return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do cliente: {ex.Message}");
+    }
+}
 
     [HttpDelete()]
     [Route("excluir/{EstoqueId}")]
