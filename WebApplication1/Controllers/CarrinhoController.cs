@@ -47,11 +47,7 @@ public class CarrinhoController : ControllerBase
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinho)
-    {
-        if (id != carrinho.CarrinhoId)
-        {
-            return BadRequest("O ID do carrinho na rota não coincide com o ID do carrinho fornecido no corpo da solicitação.");
-        }
+    }
 
         // Verifique se o carrinho com o ID especificado existe no banco de dados
         var existingCarrinho = await _context.Carrinho.FindAsync(id);
@@ -63,7 +59,7 @@ public class CarrinhoController : ControllerBase
 
         try
         {
-            // Atualize as propriedades do cliente existente com os valores do novo cliente
+            // Atualize as propriedades do carrinho existente com os valores do novo carrinho
             existingCarrinho.Status = carrinho.Status;
             existingCarrinho.Preco = carrinho.Preco;
 
@@ -82,6 +78,7 @@ public class CarrinhoController : ControllerBase
 
         return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+
     [HttpDelete()]
     [Route("excluir/{CarrinhoId}")]
     public async Task<ActionResult> Excluir(int CarrinhoId)
