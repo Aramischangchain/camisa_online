@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj": {}
+    "c:\\_src\\camisa_online\\camisa_online\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "c:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj": {
+    "c:\\_src\\camisa_online\\camisa_online\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "c:\\_src\\camisa_online\\camisa_online\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "c:\\_src\\camisa_online\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "c:\\_src\\camisa_online\\camisa_online\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\Felipe Oliveira\\.nuget\\packages\\",
-        "outputPath": "c:\\_src\\camisa_online\\WebApplication1\\obj\\",
+        "outputPath": "c:\\_src\\camisa_online\\camisa_online\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Felipe Oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config"
