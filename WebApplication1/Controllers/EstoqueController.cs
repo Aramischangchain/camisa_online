@@ -48,12 +48,12 @@ public class EstoqueController : ControllerBase
     
    
 [HttpPut("{id}")]
-public async Task<IActionResult> PutCliente(int id, Estoque eatoqueAtualizado)
+public async Task<IActionResult> PutEstoque(int id, Estoque eatoqueAtualizado)
 {
     try
     {
         // Verifique se o estoque com o ID especificado existe no banco de dados
-        var existingCliente = await _context.Estoque.FindAsync(id);
+        var existingEstoque = await _context.Estoque.FindAsync(id);
 
         if (existingEstoque == null)
         {
@@ -61,9 +61,7 @@ public async Task<IActionResult> PutCliente(int id, Estoque eatoqueAtualizado)
         }
 
         // Atualize as propriedades do estoque existente com os valores do novo estoque
-        existingCliente.Nome = clienteAtualizado.Nome;
-        existingCliente.Email = clienteAtualizado.Email;
-        existingCliente.Endereco = clienteAtualizado.Endereco;
+        existingEstoque.Quantidade= estoqueAtualizado.Quantidade;
 
         await _context.SaveChangesAsync();
 
@@ -71,7 +69,7 @@ public async Task<IActionResult> PutCliente(int id, Estoque eatoqueAtualizado)
     }
     catch (Exception ex)
     {
-        return StatusCode(500, $"Ocorreu um erro durante a atualização do cliente: {ex.Message}");
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do estoque: {ex.Message}");
     }
 }
 
