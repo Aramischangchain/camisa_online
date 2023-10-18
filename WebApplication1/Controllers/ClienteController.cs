@@ -44,41 +44,7 @@ public class ClienteController : ControllerBase
         return Created("", cliente);
     }
     
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutCliente(int id, Cliente cliente)
-    {
-
-        // Verifique se o cliente com o ID especificado existe no banco de dados
-        var existingCliente = await _context.Cliente.FindAsync(id);
-
-        if (existingCliente == null)
-        {
-            return NotFound("Cliente não encontrado.");
-        }
-
-        try
-        {
-            // Atualize as propriedades do cliente existente com os valores do novo cliente
-            existingCliente.Nome = cliente.Nome;
-            existingCliente.Email = cliente.Email;
-            existingCliente.Endereco = cliente.Endereco;
-
-            _context.Entry(existingCliente).State = EntityState.Modified;
-
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            return Conflict("O cliente foi modificado por outro usuário simultaneamente.");
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Ocorreu um erro durante a atualização do cliente: {ex.Message}");
-        }
-
-        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
-    }
-
+   
     [HttpDelete()]
     [Route("excluir/{ClienteId}")]
     public async Task<ActionResult> Excluir(int ClienteId)
@@ -93,7 +59,34 @@ public class ClienteController : ControllerBase
     }
 
 
-    
+    [HttpPut("{id}")]
+public async Task<IActionResult> PutCliente(int id, Cliente clienteAtualizado)
+{
+    try
+    {
+        // Verifique se o cliente com o ID especificado existe no banco de dados
+        var existingCliente = await _context.Cliente.FindAsync(id);
+
+        if (existingCliente == null)
+        {
+            return NotFound($"Cliente com o ID {id} não encontrado.");
+        }
+
+        // Atualize as propriedades do cliente existente com os valores do novo cliente
+        existingCliente.Nome = clienteAtualizado.Nome;
+        existingCliente.Email = clienteAtualizado.Email;
+        existingCliente.Endereco = clienteAtualizado.Endereco;
+
+        await _context.SaveChangesAsync();
+
+        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do cliente: {ex.Message}");
+    }
+}
+
 }
 
 

@@ -60,6 +60,32 @@ public class CarrinhoController : ControllerBase
         return Ok();
     }
 
+[HttpPut("{id}")]
+public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinhoAtualizado)
+{
+    try
+    {
+        // Verifique se o carrinho com o ID especificado existe no banco de dados
+        var existingCarrinho = await _context.Carrinho.FindAsync(id);
+
+        if (existingCarrinho == null)
+        {
+            return NotFound($"Carrinho com o ID {id} não encontrado.");
+        }
+
+        // Atualize as propriedades do carrinho existente com os valores do novo carrinho
+        existingCarrinho.Status = carrinhoAtualizado.Status;
+        existingCarrinho.Preco = carrinhoAtualizado.Preco;
+
+        await _context.SaveChangesAsync();
+
+        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do carrinho: {ex.Message}");
+    }
+}
 
 }
 
