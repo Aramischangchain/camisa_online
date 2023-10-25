@@ -7,6 +7,7 @@ namespace WebApplication1.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class EstoqueController : ControllerBase
+
 {
     private LojaDbContext? _context;
 
