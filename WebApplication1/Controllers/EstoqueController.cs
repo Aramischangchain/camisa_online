@@ -49,7 +49,7 @@ public class EstoqueController : ControllerBase
     
    
 [HttpPut("{id}")]
-public async Task<IActionResult> PutEstoque(int id, Estoque eatoqueAtualizado)
+public async Task<IActionResult> PutEstoque(int id, Estoque estoqueAtualizado)
 {
     try
     {
