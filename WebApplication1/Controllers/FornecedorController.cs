@@ -44,18 +44,36 @@ public class FornecedorController : ControllerBase
         return Created("", fornecedor);
     }
     
-    [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Fornecedor fornecedor)
+[HttpPut("{id}")]
+public async Task<IActionResult> PutFornecedor(int id, Fornecedor fornecedorAtualizado)
+{
+    try
     {
-        if(_context is null) return NotFound();
-        if(_context.Fornecedor is null) return NotFound();
-        var fornecedorTemp = await _context.Fornecedor.FindAsync(fornecedor.Nome);
-        if(fornecedorTemp is null) return NotFound();       
-        _context.Fornecedor.Update(fornecedor);
+        // Verifique se o fornecedor com o ID especificado existe no banco de dados
+        var existingFornecedor = await _context.Fornecedor.FindAsync(id);
+
+        if (existingFornecedor == null)
+        {
+            return NotFound($"Fornecedor com o ID {id} não encontrado.");
+        }
+
+        // Atualize as propriedades do fornecedor existente com os valores do novo fornedor
+        existingFornecedor.Nome= fornecedorAtualizado.Nome;
+        existingFornecedor.Contato= fornecedorAtualizado.Contato;
+        existingFornecedor.Endereco= fornecedorAtualizado.Endereco;
+
+
+
         await _context.SaveChangesAsync();
-        return Ok();
+
+        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do fornecedor: {ex.Message}");
+    }
+}
+
 
     [HttpDelete()]
     [Route("excluir/{FornecedorId}")]
