@@ -19,16 +19,16 @@ public class FornecedorController : ControllerBase
     [Route("listar")]
     public async Task<ActionResult<IEnumerable<Fornecedor>>> Listar()
     {
-        if(_context.Fornecedor is null)
+        if (_context.Fornecedor is null)
             return NotFound();
         return await _context.Fornecedor.ToListAsync();
     }
-    
+
     [HttpGet()]
     [Route("buscar/{FornecedorId}")]
     public async Task<ActionResult<Fornecedor>> Buscar([FromRoute] int FornecedorId)
     {
-        if(_context.Fornecedor is null)
+        if (_context.Fornecedor is null)
             return NotFound();
         var forncedor = await _context.Fornecedor.FindAsync(FornecedorId);
         if (forncedor is null)
@@ -43,52 +43,52 @@ public class FornecedorController : ControllerBase
         _context.SaveChanges();
         return Created("", fornecedor);
     }
-    
-[HttpPut("{id}")]
-public async Task<IActionResult> PutFornecedor(int id, Fornecedor fornecedorAtualizado)
-{
-    try
-    {
-        // Verifique se o fornecedor com o ID especificado existe no banco de dados
-        var existingFornecedor = await _context.Fornecedor.FindAsync(id);
 
-        if (existingFornecedor == null)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutFornecedor(int id, Fornecedor fornecedorAtualizado)
+    {
+        try
         {
-            return NotFound($"Fornecedor com o ID {id} não encontrado.");
+            // Verifique se o fornecedor com o ID especificado existe no banco de dados
+            var existingFornecedor = await _context.Fornecedor.FindAsync(id);
+
+            if (existingFornecedor == null)
+            {
+                return NotFound($"Fornecedor com o ID {id} não encontrado.");
+            }
+
+            // Atualize as propriedades do fornecedor existente com os valores do novo fornedor
+            existingFornecedor.Nome = fornecedorAtualizado.Nome;
+            existingFornecedor.Contato = fornecedorAtualizado.Contato;
+            existingFornecedor.Endereco = fornecedorAtualizado.Endereco;
+
+
+
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
         }
-
-        // Atualize as propriedades do fornecedor existente com os valores do novo fornedor
-        existingFornecedor.Nome= fornecedorAtualizado.Nome;
-        existingFornecedor.Contato= fornecedorAtualizado.Contato;
-        existingFornecedor.Endereco= fornecedorAtualizado.Endereco;
-
-
-
-        await _context.SaveChangesAsync();
-
-        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Ocorreu um erro durante a atualização do fornecedor: {ex.Message}");
+        }
     }
-    catch (Exception ex)
-    {
-        return StatusCode(500, $"Ocorreu um erro durante a atualização do fornecedor: {ex.Message}");
-    }
-}
 
 
     [HttpDelete()]
     [Route("excluir/{FornecedorId}")]
     public async Task<ActionResult> Excluir(int FornecedorId)
     {
-        if(_context is null) return NotFound();
-        if(_context.Fornecedor is null) return NotFound();
+        if (_context is null) return NotFound();
+        if (_context.Fornecedor is null) return NotFound();
         var fornecedorTemp = await _context.Fornecedor.FindAsync(FornecedorId);
-        if(fornecedorTemp is null) return NotFound();
+        if (fornecedorTemp is null) return NotFound();
         _context.Remove(fornecedorTemp);
         await _context.SaveChangesAsync();
         return Ok();
     }
 
-    
+
 }
 
 

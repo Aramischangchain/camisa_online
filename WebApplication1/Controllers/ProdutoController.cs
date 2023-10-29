@@ -44,18 +44,35 @@ public class ProdutoController : ControllerBase
         return Created("", produto);
     }
     
-    [HttpPut()]
-    [Route("alterar")]
-    public async Task<ActionResult> Alterar(Produto produto)
+[HttpPut("{id}")]
+public async Task<IActionResult> PutProduto(int id, Produto produtoAtualizado)
+{
+    try
     {
-        if(_context is null) return NotFound();
-        if(_context.Produto is null) return NotFound();
-        var produtoTemp = await _context.Produto.FindAsync(produto.Descricao);
-        if(produtoTemp is null) return NotFound();       
-        _context.Produto.Update(produto);
+        // Verifique se o produto com o ID especificado existe no banco de dados
+        var existingProduto = await _context.Produto.FindAsync(id);
+
+        if (existingProduto == null)
+        {
+            return NotFound($"Produto com o ID {id} não encontrado.");
+        }
+
+        // Atualize as propriedades do produto existente com os valores do novo produto
+        existingProduto.Descricao= produtoAtualizado.Descricao;
+        existingProduto.Cor= produtoAtualizado.Cor;
+        existingProduto.Preco= produtoAtualizado.Preco;
+        existingProduto.Tamanho= produtoAtualizado.Tamanho;
+
         await _context.SaveChangesAsync();
-        return Ok();
+
+        return NoContent(); // Indica que a atualização foi bem-sucedida, sem conteúdo de resposta.
     }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do fornecedor: {ex.Message}");
+    }
+}
+
     [HttpDelete()]
     [Route("excluir/{ProdutoId}")]
     public async Task<ActionResult> Excluir(int ProdutoId)
