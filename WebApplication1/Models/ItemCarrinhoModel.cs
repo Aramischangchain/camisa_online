@@ -9,5 +9,7 @@ public class ItemCarrinho
     public int ItemCarrinhoId {get; set;}
     public string? Descricao {get; set;}
     public string? Quantidade {get; set;}
+    public int? ProdutoId {get; set;}
+    public Produto? Produto{get; set;}
 
 }
