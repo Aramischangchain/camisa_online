@@ -15,42 +15,42 @@ public class ItemPedidoController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
-    [Route("listar")]
-    public async Task<ActionResult<IEnumerable<ItemCarrinho>>> Listar()
-    {
-        if (_context.ItemCarrinho is null)
-            return NotFound();
-        return await _context.ItemCarrinho.ToListAsync();
-    }
-
-    [HttpGet()]
-    [Route("buscar/{ItemCarrinhoId}")]
-    public async Task<ActionResult<ItemCarrinho>> Buscar([FromRoute] int ItemCarrinhoId)
-    {
-        if (_context.ItemCarrinho is null)
-            return NotFound();
-        var item = await _context.ItemCarrinho.FindAsync(ItemCarrinhoId);
-        if (item is null)
-            return NotFound();
-        return item;
-    }
     [HttpPost]
     [Route("cadastrar")]
-    public IActionResult Cadastrar(ItemCarrinho item)
+    public IActionResult Cadastrar(ItemPedido item)
     {
         _context.Add(item);
         _context.SaveChanges();
         return Created("", item);
     }
+    [HttpGet]
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<ItemPedido>>> Listar()
+    {
+        if (_context.ItemPedido is null)
+            return NotFound();
+        return await _context.ItemPedido.ToListAsync();
+    }
+
+    [HttpGet()]
+    [Route("buscar/{ItemPedidoId}")]
+    public async Task<ActionResult<ItemPedido>> Buscar([FromRoute] int ItemPedidoId)
+    {
+        if (_context.ItemPedido is null)
+            return NotFound();
+        var item = await _context.ItemPedido.FindAsync(ItemPedidoId);
+        if (item is null)
+            return NotFound();
+        return item;
+    }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutItemCarrinho(int id, ItemCarrinho itemAtualizado)
+    public async Task<IActionResult> PutItemPedido(int id, ItemPedido itemAtualizado)
     {
         try
         {
             // Verifique se o Item com o ID especificado existe no banco de dados
-            var existingItem = await _context.ItemCarrinho.FindAsync(id);
+            var existingItem = await _context.ItemPedido.FindAsync(id);
 
             if (existingItem == null)
             {
@@ -73,14 +73,14 @@ public class ItemPedidoController : ControllerBase
         }
     }
     [HttpDelete()]
-    [Route("excluir/{ItemCarrinhoId}")]
-    public async Task<ActionResult> Excluir(int ItemCarrinhoId)
+    [Route("excluir/{ItemPedidoId}")]
+    public async Task<ActionResult> Excluir(int ItemPedidoId)
     {
         if (_context is null) return NotFound();
-        if (_context.ItemCarrinho is null) return NotFound();
-        var itemcarrinhoTemp = await _context.ItemCarrinho.FindAsync(ItemCarrinhoId);
-        if (itemcarrinhoTemp is null) return NotFound();
-        _context.Remove(itemcarrinhoTemp);
+        if (_context.ItemPedido is null) return NotFound();
+        var itempedidoTemp = await _context.ItemPedido.FindAsync(ItemPedidoId);
+        if (itempedidoTemp is null) return NotFound();
+        _context.Remove(itempedidoTemp);
         await _context.SaveChangesAsync();
         return Ok();
     }

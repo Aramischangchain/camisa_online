@@ -9,7 +9,7 @@ public class Pagamento
     public string? NumeroCartao { get; set;}
     public string? Validade { get; set;}
     public string? NomeTitular { get; set;}
-    public int? CarrinhoId { get; set; }
-    public Carrinho? Carrinho{get; set;}
+    public int? PedidoId { get; set; }
+    public Pedido? Pedido{get; set;}
 
 }

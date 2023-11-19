@@ -7,9 +7,9 @@ public class LojaDbContext : DbContext
     public DbSet<Cliente>? Cliente { get; set;}
     public DbSet<Produto>? Produto { get; set;}
     public DbSet<Estoque>? Estoque { get; set;}
-    public DbSet<ItemCarrinho>? ItemCarrinho { get; set;}
+    public DbSet<ItemPedido>? ItemPedido { get; set;}
     public DbSet<Fornecedor>? Fornecedor { get; set;}
-    public DbSet<Carrinho>? Carrinho {get; set;}
+    public DbSet<Pedido>? Pedido {get; set;}
     public DbSet<Pagamento>? Pagamento {get; set;}
 
 

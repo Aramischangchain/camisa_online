@@ -6,39 +6,39 @@ namespace WebApplication1.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class CarrinhoController : ControllerBase
+public class PedidoController : ControllerBase
 {
     private LojaDbContext? _context;
 
-    public CarrinhoController(LojaDbContext context)
+    public PedidoController(LojaDbContext context)
     {
         _context = context;
     }
-
+    
     [HttpGet]
     [Route("listar")]
-    public async Task<ActionResult<IEnumerable<Carrinho>>> Listar()
+    public async Task<ActionResult<IEnumerable<Pedido>>> Listar()
     {
-        if(_context.Carrinho is null)
+        if(_context.Pedido is null)
             return NotFound();
-        return await _context.Carrinho.ToListAsync();
+        return await _context.Pedido.ToListAsync();
     }
-    
+
     [HttpGet()]
-    [Route("buscar/{CarrinhoId}")]
-    public async Task<ActionResult<Carrinho>> Buscar([FromRoute] int CarrinhoId)
+    [Route("buscar/{PedidoId}")]
+    public async Task<ActionResult<Pedido>> Buscar([FromRoute] int CarrinhoId)
     {
-        if(_context.Carrinho is null)
+        if(_context.Pedido is null)
             return NotFound();
-        var carrinho = await _context.Carrinho.FindAsync(CarrinhoId);
-        if (carrinho is null)
+        var pedido = await _context.Pedido.FindAsync(CarrinhoId);
+        if (pedido is null)
             return NotFound();
-        return carrinho;
+        return pedido;
     }
     
     [HttpPost]
     [Route("cadastrar")]
-    public IActionResult Cadastrar(Carrinho carrinho)
+    public IActionResult Cadastrar(Pedido carrinho)
     {
         _context.Add(carrinho);
         _context.SaveChanges();
@@ -48,34 +48,34 @@ public class CarrinhoController : ControllerBase
 
 
     [HttpDelete()]
-    [Route("excluir/{CarrinhoId}")]
+    [Route("excluir/{PedidoId}")]
     public async Task<ActionResult> Excluir(int CarrinhoId)
     {
         if(_context is null) return NotFound();
-        if(_context.Carrinho is null) return NotFound();
-        var carrinhoTemp = await _context.Carrinho.FindAsync(CarrinhoId);
-        if(carrinhoTemp is null) return NotFound();
-        _context.Remove(carrinhoTemp);
+        if(_context.Pedido is null) return NotFound();
+        var pedidoTemp = await _context.Pedido.FindAsync(CarrinhoId);
+        if(pedidoTemp is null) return NotFound();
+        _context.Remove(pedidoTemp);
         await _context.SaveChangesAsync();
         return Ok();
     }
 
 [HttpPut("{id}")]
-public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinhoAtualizado)
+public async Task<IActionResult> PutPedido(int id, Pedido pedidoAtualizado)
 {
     try
     {
         // Verifique se o carrinho com o ID especificado existe no banco de dados
-        var existingCarrinho = await _context.Carrinho.FindAsync(id);
+        var existingPedido = await _context.Pedido.FindAsync(id);
 
-        if (existingCarrinho == null)
+        if (existingPedido == null)
         {
-            return NotFound($"Carrinho com o ID {id} não encontrado.");
+            return NotFound($"Pedido com o ID {id} não encontrado.");
         }
 
         // Atualize as propriedades do carrinho existente com os valores do novo carrinho
-        existingCarrinho.Status = carrinhoAtualizado.Status;
-        existingCarrinho.Preco = carrinhoAtualizado.Preco;
+        existingPedido.Status = pedidoAtualizado.Status;
+        existingPedido.Preco = pedidoAtualizado.Preco;
 
         await _context.SaveChangesAsync();
 
@@ -83,7 +83,7 @@ public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinhoAtualizado
     }
     catch (Exception ex)
     {
-        return StatusCode(500, $"Ocorreu um erro durante a atualização do carrinho: {ex.Message}");
+        return StatusCode(500, $"Ocorreu um erro durante a atualização do pedido: {ex.Message}");
     }
 }
 
