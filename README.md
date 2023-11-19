@@ -11,10 +11,10 @@ Aramis Chang Chain
 classes:
 
 - Fornecedor
-- Carrinho
+- Pedido
 - Cliente
 - Pagamento
-- ItemCarrinho
+- ItemPedido
 - Produto
 - Estoque
 
