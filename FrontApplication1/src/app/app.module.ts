@@ -12,11 +12,13 @@ import { ModalModule} from 'ngx-bootstrap/modal';
 
 import { ClienteService } from './cliente.service';
 import { ClienteComponent } from './components/cliente/cliente.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClienteComponent
+    ClienteComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
