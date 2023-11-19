@@ -14,7 +14,7 @@ classes:
 - Pedido
 - Cliente
 - Pagamento
-- ItemCarrinho
+- ItemPedido
 - Produto
 - Estoque
 
