@@ -12,11 +12,23 @@ import { ModalModule} from 'ngx-bootstrap/modal';
 
 import { ClienteService } from './cliente.service';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { ProdutosComponent } from './components/produtos/produtos.component';
+import { FornecedoresComponent } from './components/fornecedores/fornecedores.component';
+import { DepositosComponent } from './components/depositos/depositos.component';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { ItensPedidoComponent } from './components/itens-pedido/itens-pedido.component';
+import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientesComponent
+    ClientesComponent,
+    ProdutosComponent,
+    FornecedoresComponent,
+    DepositosComponent,
+    PedidosComponent,
+    ItensPedidoComponent,
+    PagamentosComponent
   ],
   imports: [
     BrowserModule,
