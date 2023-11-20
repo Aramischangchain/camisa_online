@@ -34,4 +34,5 @@ export class ClienteService {
     const url = `${this.apiUrl}/buscar/${id}`;
     return this.http.delete<string>(url, httpOptions);
   }
+
 }

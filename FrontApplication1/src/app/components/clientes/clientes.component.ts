@@ -1,17 +1,17 @@
+import { Cliente } from './../../Cliente';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ClienteService } from 'src/app/cliente.service';
-import { Cliente } from 'src/app/Cliente';
 
 @Component({
   selector: 'app-cliente',
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.css']
+  templateUrl: './clientes.component.html',
+  styleUrls: ['./clientes.component.css']
 })
-export class ClienteComponent implements OnInit {
+export class ClientesComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';
-
+  clientes: Array<any> | undefined;
   constructor(private clienteService : ClienteService) { }
 
   ngOnInit(): void {
@@ -22,6 +22,12 @@ export class ClienteComponent implements OnInit {
       endereco: new FormControl(null)
     })
   }
+
+  listarClientes(): void {
+    this.clienteService.listar().subscribe(clientes => {
+       this.clientes = clientes;
+    });
+   }
   enviarFormulario(): void {
     const cliente : Cliente = this.formulario.value;
     this.clienteService.cadastrar(cliente).subscribe(result => {
