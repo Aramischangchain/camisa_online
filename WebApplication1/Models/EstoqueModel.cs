@@ -7,5 +7,5 @@ public class Estoque
 {
     [Key] [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EstoqueId { get; set;}
-    public string? Quantidade {get; set;}
+    public int? Quantidade {get; set;}
 }
