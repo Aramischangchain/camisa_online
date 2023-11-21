@@ -2,7 +2,6 @@ import { Cliente } from './../../Cliente';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ClienteService } from 'src/app/cliente.service';
-
 @Component({
   selector: 'app-cliente',
   templateUrl: './clientes.component.html',

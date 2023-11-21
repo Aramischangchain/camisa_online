@@ -15,7 +15,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { ProdutosComponent } from './components/produtos/produtos.component';
 import { FornecedoresComponent } from './components/fornecedores/fornecedores.component';
 import { DepositosComponent } from './components/depositos/depositos.component';
-import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { PedidoComponent } from './components/pedidos/pedidos.component';
 import { ItensPedidoComponent } from './components/itens-pedido/itens-pedido.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
 
@@ -25,7 +25,7 @@ import { PagamentosComponent } from './components/pagamentos/pagamentos.componen
     ClientesComponent,
     ProdutosComponent,
     FornecedoresComponent,
-    PedidosComponent,
+    PedidoComponent,
     ItensPedidoComponent,
     PagamentosComponent,
     DepositosComponent

@@ -19,6 +19,7 @@ export class DepositosComponent implements OnInit {
     this.formulario = new FormGroup({
       quantidade: new FormControl(null),
       estoqueId: new FormControl(null),
+
     })
   }
 

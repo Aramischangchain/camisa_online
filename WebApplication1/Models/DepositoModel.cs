@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models;
 
-public class Estoque
+public class Deposito
 {
     [Key] [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EstoqueId { get; set;}
