@@ -14,14 +14,15 @@ export class ClientesComponent implements OnInit {
   constructor(private clienteService : ClienteService) { }
 
   ngOnInit(): void {
+    this.listarClientes();
     this.tituloFormulario = 'Novo Cliente';
     this.formulario = new FormGroup({
       nome: new FormControl(null),
       email: new FormControl(null),
       endereco: new FormControl(null)
     })
-  }
 
+    }
   listarClientes(): void {
     this.clienteService.listar().subscribe(clientes => {
        this.clientes = clientes;
@@ -34,3 +35,5 @@ export class ClientesComponent implements OnInit {
     })
   }
 }
+
+
