@@ -15,7 +15,7 @@ export class ProdutosComponent implements OnInit {
   constructor(private produtoService : ProdutoService) { }
 
   ngOnInit(): void {
-    this.listarProduto();
+    this.listarProdutos();
     this.tituloFormulario = 'Novo Produto';
     this.formulario = new FormGroup({
       descricao: new FormControl(null),
@@ -25,11 +25,12 @@ export class ProdutosComponent implements OnInit {
     })
   }
 
-  listarProduto(): void {
+  listarProdutos(): void {
     this.produtoService.listar().subscribe(produtos => {
-       produtos = produtos;
+       this.produtos = produtos;
     });
    }
+
   enviarFormulario(): void {
     const produto : Produto = this.formulario.value;
     this.produtoService.cadastrar(produto).subscribe(result => {

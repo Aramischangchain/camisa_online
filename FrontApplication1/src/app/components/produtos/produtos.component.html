@@ -1,25 +1,22 @@
 <div class="container p-5">
   <div class="row">
-    <div
-    class="col-6 border border-light rounded p-5 shadow"
-    *ngIf="produtos"
-  >
-    <table class="table table-striped table-hover table-auto-layout">
-      <h6>Produtos</h6>
-      <tr>
-        <td><b>descricao</b></td>
-        <td><b>cor</b></td>
-        <td><b>preco</b></td>
-        <td><b>tamanho</b></td>
-      </tr>
-      <tr *ngFor="let produto of produtos">
-        <td>{{ produto.status }}</td>
-        <td>{{ produto.preco }}</td>
-        <td>{{ produto.cor }}</td>
-        <td>{{ produto.tamanho }}</td>
-      </tr>
-    </table>
-  </div>
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="produtos">
+      <table class="table table-striped table-hover table-auto-layout">
+        <h6>Produtos</h6>
+        <tr>
+          <td><b>Descrição</b></td>
+          <td><b>Cor</b></td>
+          <td><b>Preço</b></td>
+          <td><b>Tamanho</b></td>
+        </tr>
+        <tr *ngFor="let produto of produtos">
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.cor }}</td>
+          <td>{{ produto.preco }}</td>
+          <td>{{ produto.tamanho }}</td>
+        </tr>
+        </table>
+    </div>
     <div
       class="col-6 border border-light rounded p-5 shadow"
       *ngIf="formulario"
@@ -42,20 +39,22 @@
             formControlName="cor"
           />
         </div>
-        <div class="form-group">
-          <label>Preco</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            formControlName="preco"
-          />
-        </div>
+
+
         <div class="form-group">
           <label>Tamanho</label>
           <input
             type="text"
             class="form-control form-control-sm"
             formControlName="tamanho"
+          />
+        </div>
+        <div class="form-group">
+          <label>Preço</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="preco"
           />
         </div>
         <div class="container">
@@ -74,3 +73,4 @@
     </div>
   </div>
 </div>
+

@@ -31,6 +31,7 @@ namespace WebApplication1.Migrations
                 {
                     DepositoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: true),
                     Quantidade = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -61,7 +62,7 @@ namespace WebApplication1.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
                     Cor = table.Column<string>(type: "TEXT", nullable: true),
-                    Preco = table.Column<double>(type: "REAL", nullable: true),
+                    Preco = table.Column<string>(type: "TEXT", nullable: true),
                     Tamanho = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

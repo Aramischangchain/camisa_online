@@ -11,7 +11,7 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    [Migration("20231121180939_CriacaoInicial")]
+    [Migration("20231121200910_CriacaoInicial")]
     partial class CriacaoInicial
     {
         /// <inheritdoc />
@@ -89,9 +89,12 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.Deposito", b =>
                 {
-                    b.Property<int>("DepositoId")
+                    b.Property<int?>("DepositoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Quantidade")
                         .HasColumnType("INTEGER");
@@ -145,7 +148,7 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.Produto", b =>
                 {
-                    b.Property<int>("ProdutoId")
+                    b.Property<int?>("ProdutoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -155,8 +158,8 @@ namespace WebApplication1.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.Property<double?>("Preco")
-                        .HasColumnType("REAL");
+                    b.Property<string>("Preco")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Tamanho")
                         .HasColumnType("TEXT");
