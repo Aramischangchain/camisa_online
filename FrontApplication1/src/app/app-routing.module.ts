@@ -7,15 +7,15 @@ import { FornecedoresComponent } from './components/fornecedores/fornecedores.co
 import { ProdutosComponent } from './components/produtos/produtos.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
 import { ItensPedidoComponent } from './components/itens-pedido/itens-pedido.component';
+
 const routes: Routes = [{
 path: 'clientes', component:ClientesComponent},
 {path: 'depositos', component:DepositosComponent},
-{path: 'fornecedores', component:FornecedoresComponent},
 {path: 'produtos', component:ProdutosComponent},
 {path: 'pedidos', component:PedidoComponent},
 {path: 'pagamentos', component: PagamentosComponent},
 {path: 'itenspedido', component: ItensPedidoComponent},
-
+{path: 'fornecedores', component: FornecedoresComponent},
 ];
 
 @NgModule({

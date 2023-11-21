@@ -17,9 +17,10 @@ export class ProdutosComponent implements OnInit {
   ngOnInit(): void {
     this.tituloFormulario = 'Novo Produto';
     this.formulario = new FormGroup({
-      nome: new FormControl(null),
-      email: new FormControl(null),
-      endereco: new FormControl(null)
+      descricao: new FormControl(null),
+      cor: new FormControl(null),
+      preco: new FormControl(null),
+      tamanho: new FormControl(null)
     })
   }
 

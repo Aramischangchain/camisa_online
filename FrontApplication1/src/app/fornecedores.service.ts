@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class ForncedorService {
   apiUrl = 'http://localhost:5000/Fornecedor';
   constructor(private http: HttpClient) { }
   listar(): Observable<Fornecedor[]> {
