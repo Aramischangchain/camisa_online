@@ -25,10 +25,10 @@ import { PagamentosComponent } from './components/pagamentos/pagamentos.componen
     ClientesComponent,
     ProdutosComponent,
     FornecedoresComponent,
-    DepositosComponent,
     PedidosComponent,
     ItensPedidoComponent,
-    PagamentosComponent
+    PagamentosComponent,
+    DepositosComponent
   ],
   imports: [
     BrowserModule,
