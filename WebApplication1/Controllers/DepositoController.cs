@@ -6,63 +6,63 @@ namespace WebApplication1.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class EstoqueController : ControllerBase
+public class DepositoController : ControllerBase
 
 {
     private LojaDbContext? _context;
 
-    public EstoqueController(LojaDbContext context)
+    public DepositoController(LojaDbContext context)
     {
         _context = context;
     }
 
     [HttpGet]
     [Route("listar")]
-    public async Task<ActionResult<IEnumerable<Estoque>>> Listar()
+    public async Task<ActionResult<IEnumerable<Deposito>>> Listar()
     {
-        if(_context.Estoque is null)
+        if(_context.Deposito is null)
             return NotFound();
-        return await _context.Estoque.ToListAsync();
+        return await _context.Deposito.ToListAsync();
     }
     
     [HttpGet()]
-    [Route("buscar/{EstoqueId}")]
-    public async Task<ActionResult<Estoque>> Buscar([FromRoute] int EstoqueId)
+    [Route("buscar/{DepositoId}")]
+    public async Task<ActionResult<Deposito>> Buscar([FromRoute] int DepositoId)
     {
-        if(_context.Estoque is null)
+        if(_context.Deposito is null)
             return NotFound();
-        var estoque = await _context.Estoque.FindAsync(EstoqueId);
-        if (estoque is null)
+        var deposito = await _context.Deposito.FindAsync(DepositoId);
+        if (deposito is null)
             return NotFound();
-        return estoque;
+        return deposito;
     }
 
     [HttpPost]
     [Route("cadastrar")]
-    public IActionResult Cadastrar(Estoque estoque)
+    public IActionResult Cadastrar(Deposito deposito)
     {
-        _context.Add(estoque);
+        _context.Add(deposito);
         _context.SaveChanges();
-        return Created("", estoque);
+        return Created("", deposito);
     }
     
     
    
 [HttpPut("{id}")]
-public async Task<IActionResult> PutEstoque(int id, Estoque estoqueAtualizado)
+public async Task<IActionResult> PutDeposito(int id, Deposito depositoAtualizado)
 {
     try
     {
         // Verifique se o estoque com o ID especificado existe no banco de dados
-        var existingEstoque = await _context.Estoque.FindAsync(id);
+        var existingDeposito = await _context.Deposito.FindAsync(id);
 
-        if (existingEstoque == null)
+        if (existingDeposito == null)
         {
             return NotFound($"Estoque com o ID {id} não encontrado.");
         }
 
         // Atualize as propriedades do estoque existente com os valores do novo estoque
-        existingEstoque.Quantidade= estoqueAtualizado.Quantidade;
+        existingDeposito.Quantidade= depositoAtualizado.Quantidade;
 
         await _context.SaveChangesAsync();
 
@@ -75,14 +75,14 @@ public async Task<IActionResult> PutEstoque(int id, Estoque estoqueAtualizado)
 }
 
     [HttpDelete()]
-    [Route("excluir/{EstoqueId}")]
-    public async Task<ActionResult> Excluir(int EstoqueId)
+    [Route("excluir/{DepositoId}")]
+    public async Task<ActionResult> Excluir(int DepositoId)
     {
         if(_context is null) return NotFound();
-        if(_context.Estoque is null) return NotFound();
-        var estoqueTemp = await _context.Estoque.FindAsync(EstoqueId);
-        if(estoqueTemp is null) return NotFound();
-        _context.Remove(estoqueTemp);
+        if(_context.Deposito is null) return NotFound();
+        var depositoTemp = await _context.Deposito.FindAsync(DepositoId);
+        if(depositoTemp is null) return NotFound();
+        _context.Remove(depositoTemp);
         await _context.SaveChangesAsync();
         return Ok();
     }

@@ -6,6 +6,6 @@ namespace WebApplication1.Models;
 public class Deposito
 {
     [Key] [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int EstoqueId { get; set;}
+    public int DepositoId { get; set;}
     public int? Quantidade {get; set;}
 }
