@@ -14,6 +14,7 @@ export class FornecedoresComponent implements OnInit {
   constructor(private fornecedorService : ForncedorService) { }
 
   ngOnInit(): void {
+    this.listarFornecedor();
     this.tituloFormulario = 'Novo Fornecedor';
     this.formulario = new FormGroup({
       nome: new FormControl(null),

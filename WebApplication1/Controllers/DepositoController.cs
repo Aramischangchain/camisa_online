@@ -63,6 +63,7 @@ public async Task<IActionResult> PutDeposito(int id, Deposito depositoAtualizado
 
         // Atualize as propriedades do estoque existente com os valores do novo estoque
         existingDeposito.Quantidade= depositoAtualizado.Quantidade;
+        existingDeposito.Descricao = depositoAtualizado.Descricao;
 
         await _context.SaveChangesAsync();
 

@@ -14,6 +14,7 @@ export class ItensPedidoComponent implements OnInit {
   constructor(private itempedidoService : ItemPedidoService) { }
 
   ngOnInit(): void {
+    this.listarItemPedido();
     this.tituloFormulario = 'Novo Item';
     this.formulario = new FormGroup({
       descricao: new FormControl(null),

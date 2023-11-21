@@ -11,10 +11,11 @@ import { ProdutoService } from 'src/app/produtos.service';
 export class ProdutosComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';
-  clientes: Array<any> | undefined;
+  produtos: Array<any> | undefined;
   constructor(private produtoService : ProdutoService) { }
 
   ngOnInit(): void {
+    this.listarProduto();
     this.tituloFormulario = 'Novo Produto';
     this.formulario = new FormGroup({
       descricao: new FormControl(null),
@@ -24,9 +25,9 @@ export class ProdutosComponent implements OnInit {
     })
   }
 
-  listarClientes(): void {
-    this.produtoService.listar().subscribe(clientes => {
-       this.clientes = clientes;
+  listarProduto(): void {
+    this.produtoService.listar().subscribe(produtos => {
+       produtos = produtos;
     });
    }
   enviarFormulario(): void {

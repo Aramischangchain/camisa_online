@@ -86,9 +86,12 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.Deposito", b =>
                 {
-                    b.Property<int>("DepositoId")
+                    b.Property<int?>("DepositoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Quantidade")
                         .HasColumnType("INTEGER");

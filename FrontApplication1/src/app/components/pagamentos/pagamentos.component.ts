@@ -14,6 +14,7 @@ export class PagamentosComponent implements OnInit {
   constructor(private pagamentoService : PagamentoService) { }
 
   ngOnInit(): void {
+    this.listarPagamento();
     this.tituloFormulario = 'Novo Pagamento';
     this.formulario = new FormGroup({
       numerocartao: new FormControl(null),

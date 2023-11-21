@@ -1,6 +1,26 @@
 <div class="container p-5">
   <div class="row">
     <div
+    class="col-6 border border-light rounded p-5 shadow"
+    *ngIf="produtos"
+  >
+    <table class="table table-striped table-hover table-auto-layout">
+      <h6>Produtos</h6>
+      <tr>
+        <td><b>descricao</b></td>
+        <td><b>cor</b></td>
+        <td><b>preco</b></td>
+        <td><b>tamanho</b></td>
+      </tr>
+      <tr *ngFor="let produto of produtos">
+        <td>{{ produto.status }}</td>
+        <td>{{ produto.preco }}</td>
+        <td>{{ produto.cor }}</td>
+        <td>{{ produto.tamanho }}</td>
+      </tr>
+    </table>
+  </div>
+    <div
       class="col-6 border border-light rounded p-5 shadow"
       *ngIf="formulario"
     >

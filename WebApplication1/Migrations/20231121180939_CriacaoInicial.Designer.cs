@@ -11,8 +11,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    [Migration("20231121014752_CriacaoInicial2")]
-    partial class CriacaoInicial2
+    [Migration("20231121180939_CriacaoInicial")]
+    partial class CriacaoInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

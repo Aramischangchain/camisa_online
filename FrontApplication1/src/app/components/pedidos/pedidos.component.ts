@@ -15,6 +15,7 @@ export class PedidoComponent implements OnInit {
   constructor(private pedidoService : PedidoService) { }
 
   ngOnInit(): void {
+    this.listarPedidos();
     this.tituloFormulario = 'Novo Pedido';
     this.formulario = new FormGroup({
       status: new FormControl(null),

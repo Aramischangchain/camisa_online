@@ -15,10 +15,11 @@ export class DepositosComponent implements OnInit {
   constructor(private depositoService : DepositoService) { }
 
   ngOnInit(): void {
+    this.listarDepositos();
     this.tituloFormulario = 'Novo Deposito';
     this.formulario = new FormGroup({
       quantidade: new FormControl(null),
-      estoqueId: new FormControl(null),
+      descricao: new FormControl(null),
 
     })
   }

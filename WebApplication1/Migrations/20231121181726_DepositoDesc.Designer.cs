@@ -11,8 +11,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    [Migration("20231119212504_CriacaoInicial")]
-    partial class CriacaoInicial
+    [Migration("20231121181726_DepositoDesc")]
+    partial class DepositoDesc
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,9 @@ namespace WebApplication1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("ItemPedidoId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<float?>("Preco")
                         .HasColumnType("REAL");
 
@@ -79,21 +82,26 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("PedidoId");
 
+                    b.HasIndex("ItemPedidoId");
+
                     b.ToTable("Pedido");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Estoque", b =>
+            modelBuilder.Entity("WebApplication1.Models.Deposito", b =>
                 {
-                    b.Property<int>("EstoqueId")
+                    b.Property<int?>("DepositoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Quantidade")
+                    b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("EstoqueId");
+                    b.Property<int?>("Quantidade")
+                        .HasColumnType("INTEGER");
 
-                    b.ToTable("Estoque");
+                    b.HasKey("DepositoId");
+
+                    b.ToTable("Deposito");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Fornecedor", b =>
@@ -168,6 +176,15 @@ namespace WebApplication1.Migrations
                         .HasForeignKey("PedidoId");
 
                     b.Navigation("Pedido");
+                });
+
+            modelBuilder.Entity("WebApplication1.Controllers.Pedido", b =>
+                {
+                    b.HasOne("WebApplication1.Models.ItemPedido", "ItemPedido")
+                        .WithMany()
+                        .HasForeignKey("ItemPedidoId");
+
+                    b.Navigation("ItemPedido");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.ItemPedido", b =>

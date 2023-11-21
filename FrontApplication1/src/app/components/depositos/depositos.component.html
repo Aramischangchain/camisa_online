@@ -1,11 +1,32 @@
 <div class="container p-5">
   <div class="row">
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="depositos">
+      <table class="table table-striped table-hover table-auto-layout">
+        <h6>Depositos</h6>
+        <tr>
+          <td><b>Descrição</b></td>
+          <td><b>Quantidade</b></td>
+        </tr>
+        <tr *ngFor="let deposito of depositos">
+          <td>{{ deposito.descricao }}</td>
+          <td>{{ deposito.quantidade }}</td>
+        </tr>
+      </table>
+    </div>
     <div
       class="col-6 border border-light rounded p-5 shadow"
       *ngIf="formulario"
     >
       <h6>{{ tituloFormulario }}</h6>
       <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+        <div class="form-group">
+          <label>Descrição</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="descricao"
+          />
+        </div>
         <div class="form-group">
           <label>Quantidade</label>
           <input

@@ -1,5 +1,20 @@
 <div class="container p-5">
   <div class="row">
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="itenspedido">
+      <table class="table table-striped table-hover table-auto-layout">
+        <h6>Itens do Pedido</h6>
+        <tr>
+          <td><b>Descrição</b></td>
+          <td><b>Quantidade</b></td>
+          <td><b>Produto</b></td>
+        </tr>
+        <tr *ngFor="let itempedido of itenspedido">
+          <td>{{ itempedido.descricao }}</td>
+          <td>{{ itempedido.quantidade }}</td>
+          <td>{{ itempedido.produto }}</td>
+        </tr>
+        </table>
+    </div>
     <div
       class="col-6 border border-light rounded p-5 shadow"
       *ngIf="formulario"
@@ -7,19 +22,27 @@
       <h6>{{ tituloFormulario }}</h6>
       <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
         <div class="form-group">
-          <label>Quantidade</label>
+          <label>Descrição</label>
           <input
             type="text"
+            class="form-control form-control-sm"
+            formControlName="descricao"
+          />
+        </div>
+        <div class="form-group">
+          <label>Quatidade</label>
+          <input
+            type="number"
             class="form-control form-control-sm"
             formControlName="quantidade"
           />
         </div>
         <div class="form-group">
-          <label>Estoque</label>
+          <label>Produto</label>
           <input
             type="number"
             class="form-control form-control-sm"
-            formControlName="estoqueId"
+            formControlName="produto"
           />
         </div>
         <div class="container">
