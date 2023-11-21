@@ -1,5 +1,5 @@
 import { Pedido } from './Pedido';
-export class ItemPedido {
+export class Pagamento {
   numerocartao: string = '';
   validade: string = '';
   nometitular: string = '';
